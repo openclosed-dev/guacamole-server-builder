@@ -1,0 +1,12 @@
+services:
+  builder:
+    build:
+      context: ./
+    image: guacamole-server-builder:latest
+    container_name: guacamole-server-builder
+    environment:
+      - GUACAMOLE_VERSION=1.5.4
+      - GUACAMOLE_REVISION=1
+      - MAINTAINER=Apache Guacamole
+    volumes:
+      - ./work:/work
