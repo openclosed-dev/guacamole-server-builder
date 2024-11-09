@@ -18,7 +18,9 @@ make install
 
 mkdir -p ${PACKAGE_DIR}/{etc/systemd/system,DEBIAN,debian,opt}
 
-cp /etc/systemd/system/guacd.service ${PACKAGE_DIR}/etc/systemd/system/
+sed -e 's/^ExecStart=.*$/\0 -b 0.0.0.0/' \
+    -e 's|\[Service\]|\0\nEnvironment=LD_LIBRARY_PATH=/opt/guacamole/lib|' \
+    /etc/systemd/system/guacd.service > ${PACKAGE_DIR}/etc/systemd/system/guacd.service
 cp -r /opt/guacamole ${PACKAGE_DIR}/opt/
 
 cat <<EOT > ${PACKAGE_DIR}/DEBIAN/control
