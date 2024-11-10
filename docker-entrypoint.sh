@@ -18,12 +18,13 @@ LDFLAGS=-lrt ./configure \
 make
 make install
 
-mkdir -p ${PACKAGE_DIR}/{etc/systemd/system,DEBIAN,debian,opt}
+mkdir -p ${PACKAGE_DIR}/{etc/systemd/system,DEBIAN,debian,opt,usr/lib/x86_64-linux-gnu}
 
 sed -e 's/^ExecStart=.*$/\0 -b 0.0.0.0/' \
     -e 's|\[Service\]|\0\nEnvironment=LD_LIBRARY_PATH=/opt/guacamole/lib|' \
     /etc/systemd/system/guacd.service > ${PACKAGE_DIR}/etc/systemd/system/guacd.service
 cp -r /opt/guacamole ${PACKAGE_DIR}/opt/
+cp -r /usr/lib/x86_64-linux-gnu/freerdp2 ${PACKAGE_DIR}/usr/lib/x86_64-linux-gnu/
 
 cat <<EOT > ${PACKAGE_DIR}/DEBIAN/control
 Package: guacd
