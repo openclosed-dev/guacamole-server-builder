@@ -6,7 +6,7 @@ PACKAGE_NAME=guacd_${GUACAMOLE_VERSION}-${GUACAMOLE_REVISION}${OS_CODENAME}_amd6
 PACKAGE_DIR=/build/packages/${PACKAGE_NAME}
 
 rm -rf /build/*
-rm -f /work/${PACKAGE_NAME}
+rm -f /work/${PACKAGE_NAME}.deb
 
 tar -xzvf /work/guacamole-server-${GUACAMOLE_VERSION}.tar.gz -C /build
 

@@ -4,7 +4,7 @@ FROM ubuntu:${OS_CODENAME}
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
-        make \
+        build-essential \
         wget \
         dpkg-dev \
         libcairo2-dev \
