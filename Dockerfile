@@ -1,4 +1,5 @@
-FROM ubuntu:focal
+ARG OS_CODENAME=focal
+FROM ubuntu:${OS_CODENAME}
 
 ENV DEBIAN_FRONTEND=noninteractive
 

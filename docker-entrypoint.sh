@@ -1,10 +1,12 @@
 #!/bin/bash
 
-PACKAGE_NAME=guacd_${GUACAMOLE_VERSION}-${GUACAMOLE_REVISION}_amd64
+set -e
+
+PACKAGE_NAME=guacd_${GUACAMOLE_VERSION}-${GUACAMOLE_REVISION}${OS_CODENAME}_amd64
 PACKAGE_DIR=/build/packages/${PACKAGE_NAME}
 
 rm -rf /build/*
-rm /work/*.deb
+rm -f /work/${PACKAGE_NAME}
 
 tar -xzvf /work/guacamole-server-${GUACAMOLE_VERSION}.tar.gz -C /build
 

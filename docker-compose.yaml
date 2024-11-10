@@ -2,11 +2,14 @@ services:
   builder:
     build:
       context: ./
-    image: guacamole-server-builder:latest
+      args:
+        - OS_CODENAME=${OS_CODENAME}
+    image: guacamole-server-builder:${OS_CODENAME}
     container_name: guacamole-server-builder
     environment:
       - GUACAMOLE_VERSION=1.5.4
       - GUACAMOLE_REVISION=1
       - MAINTAINER=Apache Guacamole
+      - OS_CODENAME=${OS_CODENAME}
     volumes:
       - ./work:/work
