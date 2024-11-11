@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+GUACD_USER="guacd"
+GUACD_GROUP="guacd"
+GUACD_HOME="/var/run/guacd"
+
+groupadd -fr "$GUACD_GROUP"
+useradd -g "$GUACD_GROUP" -d "$GUACD_HOME" -s /bin/false -r "$GUACD_USER"

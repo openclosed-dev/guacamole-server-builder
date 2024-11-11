@@ -25,6 +25,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /build
 
-COPY docker-entrypoint.sh /
+COPY ./guacd.service /build/
+COPY ./postinst /build/
+
+COPY ./docker-entrypoint.sh /
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
