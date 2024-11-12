@@ -6,5 +6,17 @@ GUACD_USER="guacd"
 GUACD_GROUP="guacd"
 GUACD_HOME="/var/run/guacd"
 
-groupadd -fr "$GUACD_GROUP"
-useradd -g "$GUACD_GROUP" -d "$GUACD_HOME" -s /bin/false -r "$GUACD_USER"
+fail() {
+    echo "$1" >2&
+    exit 1
+}
+
+groupadd -fr "$GUACD_GROUP" || \
+    fail "Could not create group \"$GUACD_GROUP\""
+
+useradd -g "$GUACD_GROUP" -m -d "$GUACD_HOME" -s /bin/false -r "$GUACD_USER" || (
+    if [ "$?" != "9" ] # 9: username or group name already in use
+    then
+        fail "Could not create user \"$GUACD_USER\""
+    fi
+)
