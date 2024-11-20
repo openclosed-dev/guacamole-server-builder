@@ -23,6 +23,7 @@ After=network.target
 [Service]
 Environment=LD_LIBRARY_PATH=/opt/guacamole/lib
 User=guacd
+RuntimeDirectory=guacd
 ExecStart=/opt/guacamole/sbin/guacd -b 0.0.0.0 -f
 Restart=on-abnormal
 
