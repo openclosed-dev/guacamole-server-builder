@@ -1,26 +1,30 @@
 # Guacamole Server Builder
 
-Docker image for generating binary package of Apache Guacamole Server.
+Docker image for building binary package of Apache Guacamole Server.
 
 ## Usage
 
-### Building the docker image
-
-```
-docker compose build
-```
-
-### Generating binary package from source distribution
+### Preparing the source distribution
 
 Download the source distribution of the Guacamole Server and save it into `work` directory.
+
 ```
-wget https://dlcdn.apache.org/guacamole/<version>/source/guacamole-server-<version>.tar.gz -P work
+wget https://dlcdn.apache.org/guacamole/<version>/source/guacamole-server-1.5.5.tar.gz -P work
 ```
 
-Starting the Docker container automatically generates `.deb` package file in `work` directory.
+### Building the binary packages
+
+Build all binary packages from the downloaded source distribution.
+
 ```
-docker compose up
+./build-all.sh
 ```
+
+The following installer files each for Ubuntu LTS version will be generated in the `work` directory.
+
+* guacd_\<version\>-\<revision\>focal_amd64.deb
+* guacd_\<version\>-\<revision\>jammy_amd64.deb
+* guacd_\<version\>-\<revision\>noble_amd64.deb
 
 ### Installing the binary package
 
